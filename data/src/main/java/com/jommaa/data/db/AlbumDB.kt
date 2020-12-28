@@ -6,8 +6,9 @@ import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.jommaa.data.db.dao.AlbumsDao
+import com.jommaa.data.response.AlbumResp
 
-@Database(entities = arrayOf(Album::class), version = 1)
+@Database(entities = arrayOf(AlbumResp::class), version = 1)
 abstract class AlbumDB : RoomDatabase() {
     abstract fun AlbumsDao(): AlbumsDao
     companion object {

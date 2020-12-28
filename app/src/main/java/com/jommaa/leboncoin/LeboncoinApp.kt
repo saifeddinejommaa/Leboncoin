@@ -1,20 +1,21 @@
 package com.jommaa.leboncoin
 
 import android.app.Application
-import com.jommaa.leboncoin.datainjection.ApplicationComponent
-import com.jommaa.leboncoin.datainjection.ApplicationModule
-import com.jommaa.leboncoin.datainjection.DaggerApplicationComponent
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class LeboncoinApp : Application() {
 
-    lateinit var component: ApplicationComponent
+    //lateinit var component: ApplicationComponent
 
     override fun onCreate() {
         super.onCreate()
-        build()
+        //build()
     }
-
+    /*
     fun build() {
         component = DaggerApplicationComponent.builder().applicationModule(ApplicationModule(this)).build()
     }
+    */
+
 }

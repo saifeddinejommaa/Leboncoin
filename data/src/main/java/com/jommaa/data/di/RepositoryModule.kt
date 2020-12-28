@@ -1,4 +1,4 @@
-package com.jommaa.leboncoin.datainjection
+package com.jommaa.data.di
 
 import com.jommaa.data.api.LeboncoinApi
 import com.jommaa.data.db.datasource.AlbumsDataSource
@@ -7,10 +7,13 @@ import com.jommaa.data.repositoryImp.AlbumsRepositoryImp
 import com.jommaa.domain.Repository.IAlbumsRepository
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import javax.inject.Singleton
 
+@InstallIn(ApplicationComponent::class)
 @Module
-class RepositoryModule {
+object RepositoryModule {
 
     @Singleton
     @Provides

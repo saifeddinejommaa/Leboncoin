@@ -5,7 +5,7 @@ buildscript {
     ext.rx_android2_version = '2.0.1'
     ext.retrofit_version = '2.3.0'
     ext.javax_annotation_version = '1.0'
-    ext.dagger_version = '2.15'
+    ext.dagger_version = '2.25.2'
     ext.rx_kotlin_version = "2.2.0"
     ext.rx_permissions_version = '0.9.4@aar'
     ext.picasso_version = '2.71828'
@@ -22,6 +22,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:4.0.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.28-alpha'
 
     }
 }

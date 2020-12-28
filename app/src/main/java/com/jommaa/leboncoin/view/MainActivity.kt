@@ -2,6 +2,7 @@ package com.jommaa.leboncoin.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.annotation.NonNull
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -13,6 +14,7 @@ import javax.inject.Inject
 import androidx.recyclerview.widget.RecyclerView
 import com.jommaa.leboncoin.databinding.ActivityMainBinding
 import com.jommaa.leboncoin.view.adapter.AlbumsListAdapter
+import org.jetbrains.annotations.NotNull
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,9 +22,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var viewModel: MainViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (application as LeboncoinApp).component.inject(this)
-        val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        binding.viewModel = viewModel
+       // (application as LeboncoinApp).component.inject(this)
+       // val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+      //  binding.viewModel = viewModel
 
     }
 
@@ -34,7 +36,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         @JvmStatic
         @BindingAdapter("adapter")
-        fun bindList(recyclerView: RecyclerView, viewModel: MainViewModel) {
+        fun bindAlbumsList(@NonNull recyclerView: RecyclerView, viewModel: MainViewModel) {
             val adapter = AlbumsListAdapter(viewModel.albumsList)
             recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
             recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
