@@ -1,14 +1,12 @@
 package com.jommaa.data.db.datasource
 
 import android.app.Application
-import com.jommaa.domain.model.Album
 import com.jommaa.data.db.AlbumDB
 import com.jommaa.data.response.AlbumResp
 import dagger.hilt.android.qualifiers.ApplicationContext
-import io.reactivex.Completable
 import javax.inject.Inject
 
-class AlbumsDataSource @Inject constructor (@ApplicationContext private val context: Application) {
+class AlbumsDataSource @Inject constructor (@ApplicationContext val context: android.content.Context) {
     val dataBase=AlbumDB.invoke(context)
 
     fun insertAlbum(album: AlbumResp?)  {

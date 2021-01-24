@@ -22,6 +22,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -51,11 +55,13 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation "androidx.recyclerview:recyclerview-selection:1.1.0-rc03"
+    implementation 'androidx.activity:activity-ktx:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     testImplementation "com.nhaarman:mockito-kotlin:$mockito_kotlin_version"
     implementation project (':domain')
+    implementation project (':data')
 
     //Rx
     implementation "io.reactivex.rxjava2:rxjava:$rx_java2_version"
@@ -74,8 +80,10 @@ dependencies {
     annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    //Hilt
     implementation "com.google.dagger:hilt-android:2.28-alpha"
     kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
+    implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha01'
     //Retrofit
     api "com.squareup.retrofit2:converter-gson:$retrofit_version"
     api "com.squareup.retrofit2:retrofit:$retrofit_version"

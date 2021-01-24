@@ -1,6 +1,7 @@
 package com.jommaa.domain.Repository
 
 import com.jommaa.domain.model.Album
+import io.reactivex.Completable
 import io.reactivex.Single
 
 interface IAlbumsRepository {
@@ -9,7 +10,7 @@ interface IAlbumsRepository {
 
     fun getLocalAlbumsList():List<Album>
 
-    fun putAllAlbums(list:List<Album>)
+    fun putAllAlbums(list:List<Album>): Completable
 
     fun isDbEmpty() : Boolean
 }
