@@ -2,6 +2,8 @@ package com.jommaa.leboncoin.viewmodel
 
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableBoolean
+import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.ViewModel
 import com.jommaa.domain.model.Album
 import com.jommaa.domain.result.AlbumsListResult
 import com.jommaa.domain.usescase.GetAlbumsListUseCase
@@ -11,7 +13,7 @@ import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(val getAlbumListUseCase : GetAlbumsListUseCase) {
+open class MainViewModel @Inject constructor(val getAlbumListUseCase : GetAlbumsListUseCase) : ViewModel() {
 
     val albumsList = ObservableArrayList<Album>()
     val disposables = CompositeDisposable()

@@ -6,6 +6,8 @@ import com.jommaa.domain.result.AlbumsListResult
 import com.jommaa.domain.result.AlbumsListResult.*
 import io.reactivex.Observable
 import io.reactivex.Single
+import io.reactivex.schedulers.Schedulers
+import sun.rmi.runtime.Log
 import javax.inject.Inject
 import kotlin.concurrent.thread
 
@@ -20,7 +22,8 @@ class GetAlbumsListUseCase @Inject constructor(val repo: IAlbumsRepository){
     }
 
    private fun onSuccessGettingAlbums(albums:List<Album>) : AlbumsListResult{
-       Thread { repo.putAllAlbums(albums) }.start()
+      repo.putAllAlbums(albums).subscribeOn(Schedulers.io())
+          .subscribe({Log.getLog("Success","",false)},{})
        return Success(albums)
    }
 
