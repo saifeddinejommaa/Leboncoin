@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Leboncoin</string>
+    <string name="retry_button_text">Try again</string>
 </resources>

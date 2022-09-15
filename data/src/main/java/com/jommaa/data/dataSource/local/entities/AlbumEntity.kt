@@ -1,11 +1,11 @@
-package com.jommaa.data.dto
+package com.jommaa.data.dataSource.local.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 @Entity
-data class AlbumDto(
+data class AlbumEntity(
     @SerializedName("albumId")
     val albumId: Int,
     @PrimaryKey

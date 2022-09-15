@@ -4,5 +4,9 @@ import com.jommaa.domain.entities.Album
 
 interface IAlbumsRepository {
 
-    suspend fun getAlbumsList(): List<Album>
+    suspend fun getAlbumsListFromServer(): List<Album>
+
+    suspend fun getAlbumsListFromDB(): List<Album>
+
+    suspend fun putAlbumsInDB(albums: List<Album>)
 }

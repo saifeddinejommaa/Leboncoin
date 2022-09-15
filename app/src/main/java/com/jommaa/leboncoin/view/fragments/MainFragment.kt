@@ -37,9 +37,14 @@ class MainFragment : Fragment() {
             layoutManager = LinearLayoutManager(activity)
             adapter = AlbumsListAdapter(this.context)
         }
-        vm.getAlbums()?.observe(viewLifecycleOwner, Observer<DataResult> {
+        retryButton.setOnClickListener {
+            vm.fetchAlbums()
+        }
+        vm.getAlbums().observe(viewLifecycleOwner, Observer<DataResult> {
             when (it) {
                 is DataResult.Loading -> {
+                    textError.visibility = View.GONE
+                    retryButton.visibility = View.GONE
                     progress.visibility = View.VISIBLE
                 }
                 is DataResult.Success -> {
@@ -48,16 +53,17 @@ class MainFragment : Fragment() {
                 }
                 is DataResult.Failure -> {
                     progress.visibility = View.GONE
+                    textError.visibility = View.VISIBLE
+                    retryButton.visibility = View.VISIBLE
+                    textError.text = it.message
                 }
             }
         })
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                //TODO
+                vm.fetchAlbums()
             }
         }
-
-
     }
 }

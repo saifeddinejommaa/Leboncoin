@@ -27,6 +27,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+    kapt {
+        generateStubs = true
+    }
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -50,6 +56,18 @@ dependencies {
     //Hilt
     implementation "com.google.dagger:hilt-android:$daggerhilt_version"
     kapt "com.google.dagger:hilt-compiler:$daggerhilt_version"
+
+    //Room
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    //Mockito
+    testImplementation 'org.mockito:mockito-core:1.10.19'
+    //For runBlockingTest, CoroutineDispatcher etc.
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2'
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2"
+    testImplementation "io.mockk:mockk:1.12.7"
 
     implementation project(':domain')
 }
