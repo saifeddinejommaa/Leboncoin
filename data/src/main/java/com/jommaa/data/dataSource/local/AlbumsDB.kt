@@ -25,5 +25,11 @@ abstract class AlbumDB : RoomDatabase() {
             AlbumDB::class.java, "albums.db"
         )
             .build()
+
+         fun close(){
+            instance?.close()
+        }
     }
+
+
 }
