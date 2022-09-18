@@ -24,8 +24,8 @@ class MainViewModel @Inject constructor(val useCase: GetAlbumsUseCase) : ViewMod
      * Start getting data
      */
     fun fetchAlbums() {
+            albums.postValue(DataResult.Loading)
         viewModelScope.launch {
-            albums.postValue(DataResult.Loading())
             albums.postValue(useCase.invoke())
         }
     }

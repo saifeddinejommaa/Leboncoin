@@ -7,6 +7,7 @@ import com.jommaa.domain.repositories.IAlbumsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.net.UnknownHostException
 import javax.inject.Inject
 
 
@@ -24,27 +25,34 @@ class GetAlbumsUseCase @Inject constructor(private val albumRepository: IAlbumsR
             when (isNotEmpty(albumsList)) {
                 true -> {
                     insertAlbumsInDB(albumsList)
-                    return DataResult.Success(albumsList)
                 }
             }
+            return DataResult.Success(albumsList)
         } catch (ex: Exception) {
             val localAlbums = getAlbumsListFromDB()
             return when (isNotEmpty(localAlbums)) {
                 true -> DataResult.Success(localAlbums)
-                else -> DataResult.Failure(
-                    ex,
-                    "No data available to display, please make sure you have internet connection and try again"
-                )
+                else -> {
+                    var message= ""
+                    message = when(ex) {
+                        is UnknownHostException ->{
+                            "No data available to display, please make sure you have internet connection and try again"
+                        }
+                        else ->{
+                            "Unknown Error, please try again"
+                        }
+                    }
+                    DataResult.Failure(ex,message)
+                }
             }
         }
-        return DataResult.Failure(Exception("Unknown Error"), "Unknown Error, please try again")
 
     }
 
     /**
      * get all albums from local DB
      */
-    private suspend fun getAlbumsListFromDB(): List<Album> {
+     suspend fun getAlbumsListFromDB(): List<Album> {
         val albums = mutableListOf<Album>()
         GlobalScope.launch(Dispatchers.IO) {
             albums.addAll(albumRepository.getAlbumsListFromDB())

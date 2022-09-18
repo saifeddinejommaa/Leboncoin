@@ -49,7 +49,18 @@ class MainFragment : Fragment() {
                 }
                 is DataResult.Success -> {
                     progress.visibility = View.GONE
-                    (recycler_albumsList.adapter as AlbumsListAdapter).submitList(it.albums)
+                    when(it.albums != null && it.albums.isNotEmpty()){
+                        true->{
+                            (recycler_albumsList.adapter as AlbumsListAdapter).submitList(it.albums)
+                        }
+                        else->{
+                            textError.visibility = View.VISIBLE
+                            retryButton.visibility = View.VISIBLE
+                            textError.text = "No data available To Display"
+                        }
+                    }
+
+
                 }
                 is DataResult.Failure -> {
                     progress.visibility = View.GONE
