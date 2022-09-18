@@ -1,4 +1,4 @@
-## JOMMAA Saif Eddine (Le bon coin)
+## JOMMAA Saif Eddine (Leboncoin)
 An application consists of consuming a web service in order to list the elements returned in a list.
 This project is developed by Clean Architecture (MVVM+LiveData) and it's composed of 3 modules.
 
